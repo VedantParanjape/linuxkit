@@ -132,8 +132,10 @@ func (p Pkg) Build(bos ...BuildOpt) error {
 
 	if !bo.force {
 		tag := p.Tag()
+		fmt.Println("ZARCH: ", os.LookupEnv("ZARCH"))
 		if value, ok := os.LookupEnv("ZARCH"); ok {
 			tag = tag + "-" + value
+			fmt.Println("tag: ", tag)
 		}
 		ok, err := d.pull(tag)
 		if err != nil {
